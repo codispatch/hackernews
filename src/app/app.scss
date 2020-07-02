@@ -1,0 +1,44 @@
+@import "../index";
+
+.app-component {
+  width: 85%;
+  height: $size-fh;
+  margin: $size-3xs auto;
+}
+.app-header {
+  display: flex;
+  padding: $size-5xs;
+  width: $size-fw;
+  max-height: $size-2xl;
+  color: $header-text;
+  font-weight: $weight-xbd;
+  font-size: $size-xs;
+  background-color: $header-color;
+
+  .app-header-image {
+    border: $size-5xs/2 solid $base;
+  }
+
+  .app-header-text {
+    line-height: $size-xl;
+     padding: $size-5xs;
+  }
+}
+.app-section {
+  display: flex;
+  justify-content: space-between;
+  background-color: $container-primary;
+  width: $size-fw;
+  height: $size-fh;
+}
+.app-footer {
+  display: flex;
+  width: $size-fw;
+  padding: $size-3xs;
+  min-height: $size-2xl;
+  color: $footer-text;
+  font-weight: $weight-xbd;
+  font-size: $size-xs;
+  background-color: $container-primary;
+  border-top: $size-5xs solid $header-color;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "./app.css";
+import "./app.scss";
 
 export interface AppProps { }
 export interface AppState { }
@@ -8,16 +8,14 @@ class App extends React.Component<AppProps, AppState> {
   render() {
     return (
       <div className="app-component">
-        <header className="app-header">Hackernews</header>
+        <header className="app-header">
+          <div className="app-header-image"><img src="../images/y18.gif" alt="Hacker News" width="20px" height="20px" /></div>
+          <div className="app-header-text">Hacker News</div>
+        </header>
         <section className="app-section">
-          <aside className="app-sidebar-primary">
-          </aside>
-          <main className="app-main-section">
-            <section className="app-main-content-section">  
-            </section>
-          </main>
+        
         </section>
-        <footer className="app-footer"></footer>
+        <footer className="app-footer">Hacker News</footer>
       </div>
     );
   }
