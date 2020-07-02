@@ -1,0 +1,54 @@
+.app-component {
+  display: flex;
+  min-height: 100vh;
+  width: var(--size-fw, 100%);
+}
+.app-header {
+  position: fixed;
+  padding: var(--size-md,1rem);
+  width: var(--size-fw, 100%);
+  min-height: 2.85rem;
+  color: var(--header-text);
+  font-weight: var(--weight-xbd);
+  font-size: var(--size-xl);
+  background-color: white;
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow cubic-bezier(0.165, 0.84, 0.44, 1) 0.25s;
+  z-index: 1;
+}
+.app-section {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
+  justify-content: space-between;
+}
+.app-sidebar-primary {
+  position: fixed;
+  order: 1;
+  width: 4.125rem;
+  flex-shrink: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  padding: 0.75rem 0rem 0.75rem 0rem;
+  background-color:var(--contrast-tertiary) ;
+  border-right: 1px solid var(--border);
+  box-shadow: 0 0 0 rgba(12, 13, 14, 0.05);
+  transition: box-shadow ease-in-out 0.1s, transform ease-in-out 0.1s;
+}
+.app-main-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  order: 2;
+  width: calc(100% - 4.125rem);
+  margin-left: 4.125rem;
+  margin-top: 3.5rem;
+  z-index: -1;
+}
+.app-main-content-section {
+  display: flex;
+  flex: 1 1 auto;
+  position: relative;
+  justify-content: space-between;
+}
