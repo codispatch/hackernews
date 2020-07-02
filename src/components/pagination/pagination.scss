@@ -1,0 +1,23 @@
+@import "../../index.scss";
+
+.pagination-component {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.5rem 0.75rem;
+
+    .prev {
+        padding: 0rem 0.5rem;
+        a {
+            color:$header-color;
+            text-decoration: none;
+        }
+    }
+
+    .next {
+        padding: 0 0.5rem;
+        a {
+            color:$header-color;
+            text-decoration: none;
+        }
+    }
+}

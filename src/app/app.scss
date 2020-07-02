@@ -20,12 +20,14 @@
   }
 
   .app-header-text {
-    line-height: $size-xl;
-     padding: $size-5xs;
+     font-size: $size-lg;
+     line-height: $size-xl;
+     padding: $size-5xs $size-4xs;
   }
 }
 .app-section {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   background-color: $container-primary;
   width: $size-fw;

@@ -1,6 +1,7 @@
 import React from "react";
 import "./app.scss";
 import NewsDetails, { Column } from "../components/news-details/news-details";
+import Pagination from "../components/pagination/pagination";
 
 export interface AppProps { }
 export interface AppState { }
@@ -56,6 +57,8 @@ class App extends React.Component<AppProps, AppState> {
             <Column name="title" displayName="News Details" customRenderer={this.renderNewDetails}></Column>
           </NewsDetails>
 
+          <Pagination></Pagination>
+          
         </section>
         <footer className="app-footer">Hacker News</footer>
       </div>
