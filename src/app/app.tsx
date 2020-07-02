@@ -36,7 +36,7 @@ class App extends React.Component<AppProps, AppState> {
     return (<div><span className="story-title"><a href={rowData["url"]} >{rowData["title"]}</a></span> <span className="story-link">({rowData["url"] ? rowData["url"].split("/")[2].replace("www.", "") : ""})</span> by <span className="story-author">{rowData["author"]}</span> <span className="story-time-ago">({timeAgoText(rowData["created_at"]) + " ago"})</span> [<span className="story-hide-option">hide</span>]</div>);
   }
   renderVoteCount(rowData: any) {
-    return (<div>0</div>);
+    return (<div>{rowData["points"]}</div>);
   }
   renderUpVote(rowData: any) {
     return (<div className="story-up-vote"></div>);
