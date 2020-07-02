@@ -1,0 +1,94 @@
+@import "../../index";
+
+@mixin table {
+    width: $size-fw+0.1;
+    height:$size-fh;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-style: hidden; 
+    text-align: left;
+}
+.table {
+    @include table;
+}
+@mixin thead {
+    text-transform: capitalize;
+}
+.thead {
+    @include thead;
+    background-color: $header-color;
+    color: $base;
+}
+@mixin tbody {
+
+}
+.tbody {
+    @include tbody;
+    background-color: transparent;
+    color: $normal-text;
+}
+@mixin tfoot {
+
+}
+.tfoot {
+    @include tfoot;
+    background-color: transparent;
+    color: $base;
+}
+tr:nth-child(even) {background-color: $container-secondary;}
+td,th {
+    padding: $size-4xs $size-3xs;
+}
+th {
+    padding-top:$size-5xs;
+    padding-bottom: $size-5xs;
+}
+.news-details-component {
+    width: $size-fw;
+    height:$size-fh;
+}
+.story-title {
+    a {
+      font-size: $size-md;
+      color: $story-title;
+      text-decoration: none;
+    }
+}
+.story-link {
+    color: $story-link;
+    font-size: $size-xs;
+    text-decoration: none;
+}
+.story-link:hover {
+    text-decoration: underline;
+}
+.story-author {
+    color: $story-info;
+    font-weight: $weight-bd;
+    font-size:$size-sm;
+}
+.story-time-ago {
+    font-size:$size-sm;
+}
+.story-hide-option {
+    color: $story-info;
+    font-weight: $weight-bd;
+    font-size:$size-xs;
+}
+.story-up-vote {
+    width: 0; 
+    height: 0; 
+    margin: 0 auto;
+    border-left: $size-3xs solid transparent;
+    border-right: $size-3xs solid transparent;
+    border-bottom: $size-3xs solid $story-vote;
+}
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
