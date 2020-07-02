@@ -1,0 +1,8 @@
+@import "../../index.scss";
+
+.timeline-chart-component {
+    width: $size-fw;
+    height: $size-fh;
+    margin:0 auto;
+    border-top: $size-5xs solid $header-color;
+}

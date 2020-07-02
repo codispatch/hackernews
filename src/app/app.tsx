@@ -2,6 +2,7 @@ import React from "react";
 import "./app.scss";
 import NewsDetails, { Column } from "../components/news-details/news-details";
 import Pagination from "../components/pagination/pagination";
+import TimelineChart from "../components/timeline-chart/timeline-chart";
 
 export interface AppProps { }
 export interface AppState { }
@@ -58,6 +59,8 @@ class App extends React.Component<AppProps, AppState> {
           </NewsDetails>
 
           <Pagination></Pagination>
+
+          <TimelineChart></TimelineChart>
           
         </section>
         <footer className="app-footer">Hacker News</footer>
