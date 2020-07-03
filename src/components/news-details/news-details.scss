@@ -46,6 +46,7 @@ th {
 .news-details-component {
     width: $size-fw;
     height:$size-fh;
+    min-height: 27*$size-2xl;
 }
 .story-title {
     a {

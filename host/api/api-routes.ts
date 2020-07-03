@@ -1,15 +1,18 @@
 import { Router } from 'express';
-import * as config from '../config/config';
-
 import { appRouter } from '../routes/app-router';
 import { appService } from '../services/app-service';
 
-const apiRouterIntance = appRouter.getInstance();
-const apiRoutes = apiRouterIntance.router;
-apiRouterIntance._appService = new appService();
-
 const apiRouter:Router = Router();
 
-apiRouter.use('/app',apiRoutes);
+const apiRouterIntance = appRouter.getInstance();
+const apiRoutes = apiRouterIntance.routes;
+apiRouterIntance._appService = new appService();
 
-export {appRouter}
+apiRouter.route('v1/health').get((req,res) =>{
+    return res.status(200).json({
+        message:'health point is working'
+    })
+});
+apiRouter.use('/v1',apiRoutes);
+
+export {apiRouter}

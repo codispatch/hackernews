@@ -1,26 +1,37 @@
 import express from 'express';
+import path from 'path';
+import cors from 'cors';
+import {json,urlencoded} from 'body-parser';
 import  * as config from './config/config';
-import {appRouter} from './api/api-routes';
+import {apiRouter} from './api/api-routes';
 
 class App {
     public express:any;
-    public apiBasehref:string;
+    public clientApiBasehref:string;
 
-    constructor(apiBaseRef:string){
-        this.apiBasehref = apiBaseRef;
+    constructor(clientApiBasehref:string){
+        this.clientApiBasehref = clientApiBasehref;
         this.express = express();
-
+        this.express.use(json());
+        this.express.use(urlencoded({extended:true}));
+        this.express.use(cors());
+        
+        this.express.use(express.static(path.join(__dirname, "../")));
+        this.express.get("/", (req, res) => {
+            res.sendFile(path.join(__dirname, "../index.html"));
+        });
+        
         this.express.use((req:any,res:any,next:any)=>{
             console.log('Processing req - '+req.url);
             next();
         });
 
-        this.mountRoutes(this.express,this.apiBasehref);
+        this.mountRoutes(this.express,this.clientApiBasehref);
     }
 
-    private mountRoutes(app:any,apiBasehref:string){
-        app.use(apiBasehref+'/v1/',appRouter);
+    private mountRoutes(app:any,clientApiBasehref:string){
+        app.use(clientApiBasehref,apiRouter);
     }
 
 }
-export default new App(config.API_BASEREF).express;
+export default new App(config.CLIENT_API_BASEREF).express;

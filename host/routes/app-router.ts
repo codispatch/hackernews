@@ -1,14 +1,11 @@
 import { Router,Request, Response, NextFunction } from "express";
-import * as config from '../config/config';
-
-
 export class  appRouter {
-    public router:Router;
+    routes:Router;
     private static instance: appRouter;
     public _appService:any;
 
     private constructor(){
-        this.router = Router();
+        this.routes = Router();
         this.init();
     }
 
@@ -27,16 +24,18 @@ export class  appRouter {
     }
 
     init(){
-       this.router.get('/getNewsDetails',this.getNewsDetails);
+       this.routes.get('/getNewsDetails',this.getNewsDetails);
     }
 
     getNewsDetails = async (req:Request,res:Response,next:NextFunction) => {
-        let output_data = {};
+        let response:any;
+        let pageNumber = req.query["pageNumber"];
         try {
-            output_data = await this._appService.getNewsDetailsData();
+            response = await this._appService.getNewsDetailsData(pageNumber);
         } catch(err){
 
         }
-        return res.status(200).json(output_data);
+        
+        return res.json({ data: response.data});
     };
 }

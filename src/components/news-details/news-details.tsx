@@ -6,7 +6,8 @@ export interface NewsDetailsProps {
   showColumnHeader?:boolean,
   children: any,
   getNewsDetailsData?:any,
-  newsDetailsData?:any
+  newsDetailsData?:any,
+  currentPageNumber?:number
 }
 export interface NewsDetailsState { }
 
@@ -15,7 +16,7 @@ class NewsDetails extends React.Component<NewsDetailsProps, NewsDetailsState> {
 
   componentDidMount(){
     if (this.props.getNewsDetailsData){
-        this.props.getNewsDetailsData();
+        this.props.getNewsDetailsData(this.props.currentPageNumber);
     }
   }
 
@@ -32,7 +33,7 @@ class NewsDetails extends React.Component<NewsDetailsProps, NewsDetailsState> {
     if (this.props.children && this.props.children.length && this.props.children.length > 0 && this.props.showColumnHeader === true) {
       return (<thead className="thead"><tr>
         {this.props.children.map((column: any, index: number) => {
-          return (<th key={index} className={this.getTextAlignment(column.props.align)}>{column.props.displayName}</th>)
+          return (<th key={index} style={{ width:column.props.width?column.props.width+'%':"" }} className={this.getTextAlignment(column.props.align)+" "+this.getTextAlignment(column.props.align)}>{column.props.displayName}</th>)
         })}
       </tr></thead>);
     }
@@ -78,6 +79,7 @@ export interface ColumnProps {
   name: string,
   displayName?: string,
   align?:string,
+  width?:number,
   customRenderer?:(rowData:any)=>JSX.Element
 }
 export interface ColumnState {
