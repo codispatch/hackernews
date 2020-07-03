@@ -5,11 +5,20 @@ export interface NewsDetailsProps {
   data?: any,
   showColumnHeader?:boolean,
   children: any,
+  getNewsDetailsData?:any,
+  newsDetailsData?:any
 }
 export interface NewsDetailsState { }
 
 class NewsDetails extends React.Component<NewsDetailsProps, NewsDetailsState> {
   static defaultProps: NewsDetailsProps;
+
+  componentDidMount(){
+    if (this.props.getNewsDetailsData){
+        this.props.getNewsDetailsData();
+    }
+  }
+
   getTextAlignment(align:any){
     let textAlign = "left";
     switch(align){

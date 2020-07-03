@@ -1,14 +1,17 @@
 import BaseAPI, { axiosInstance } from "./base-api";
+import { data } from "../app/app";
 
-export default class AppAPI extends BaseAPI {
+ class AppAPI extends BaseAPI {
 
-    public getData = async() => {
+    public getNewsDetailsData = async() => {
         let response:any = null;
         try {
-            response = await axiosInstance.get('/relativePath',{})
+            //response = await axiosInstance.get('/relativePath',{})
+            response = {data:data,status:200};
         }catch(error){
             this.handleError(error,"")
         }
         return response;
     }
 }
+export default new AppAPI();

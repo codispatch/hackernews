@@ -4,7 +4,10 @@ import NewsDetails, { Column } from "../components/news-details/news-details";
 import Pagination from "../components/pagination/pagination";
 import TimelineChart from "../components/timeline-chart/timeline-chart";
 
-export interface AppProps { }
+export interface AppProps {
+  getNewsDetailsData?:any,
+  newsDetailsData?:any
+ }
 export interface AppState { }
 
 class App extends React.Component<AppProps, AppState> {
@@ -51,7 +54,7 @@ class App extends React.Component<AppProps, AppState> {
         </header>
         <section className="app-section">
           
-          <NewsDetails data={data[0]["hits"]} showColumnHeader={true}>
+          <NewsDetails data={this.props.newsDetailsData} showColumnHeader={true} {...this.props}>
             <Column name="num_comments" align="center" displayName="Comments" ></Column>
             <Column name="age" align="center" displayName="VoteCount" customRenderer={this.renderVoteCount}></Column>
             <Column name="company" align="center" displayName="UpVote" customRenderer={this.renderUpVote}></Column>
