@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target":"es6",
+        "module": "commonjs",
+        "outDir": "../build/host",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "types":["express","express-serve-static-core"]
+    },
+    "include":["src/**/*.ts","server.ts","app.ts"],
+    "exclude": ["node_modules"]
+}

@@ -1,0 +1,23 @@
+{
+    "name": "app-service",
+    "version": "1.0.0",
+    "description": "cool description",
+    "main": "server.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "concurrently \"tsc --watch \" \"nodemon ../build/host/server.js\""
+    },
+    "dependencies": {
+        "concurrently": "^5.2.0",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.6",
+        "@types/node": "^12.6.8",
+        "nodemon": "^1.19.0",
+        "ts-node": "^5.0.1",
+        "tsnodemon": "^1.1.2",
+        "typescript": "^3.4.5"
+    }
+}
