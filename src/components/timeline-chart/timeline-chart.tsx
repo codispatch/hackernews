@@ -2,61 +2,54 @@ import React from "react";
 import "./timeline-chart.scss";
 import Chart from "react-google-charts";
 
-export interface TimelineChartProps { }
+export interface TimelineChartProps {
+  newsDetailsData?: any
+}
 export interface TimelineChartState { }
 
 class TimelineChart extends React.Component<TimelineChartProps, TimelineChartState> {
+  getTimelineChart(data: any) {
+    let timelineChart = [];
+    if (data && data.length && data.length > 0) {
+      timelineChart.push(['x', 'upvotes']);
+      for (let i = 0; i < data.length; i++) {
+        timelineChart.push([data[i]["objectID"], data[i]["points"]]);
+      }
+    }
+    return timelineChart;
+  }
+  renderChart(data: any) {
+    if (data && data.length && data.length > 0) {
+      return (<Chart
+        width="100%"
+        height="700px"
+        chartType="LineChart"
+        loader={<div>Loading Chart ...</div>}
+        data={this.getTimelineChart(data)}
+        options={{
+          hAxis: {
+            title: 'Story ID',
+            direction: -1,
+            slantedText: true,
+            slantedTextAngle: 90
+          },
+          vAxis: {
+            title: 'Votes',
+          },
+          backgroundColor: "#F6F6EF",
+          legend: { position: "bottom" }
+        }}
+      />);
+    }
+    return;
+  }
   render() {
     return (
       <div className="timeline-chart-component">
-        <Chart
-          width="100%"
-          height="400px"
-          chartType="LineChart"
-          loader={<div>Loading Chart ...</div>}
-          data={data}
-          options={{
-            hAxis: {
-              title: 'Story ID',
-              direction:-1, 
-              slantedText:true, 
-              slantedTextAngle:90
-            },
-            vAxis: {
-              title: 'Votes',
-            },
-            backgroundColor: "#F6F6EF",
-            legend: { position: "bottom" }
-          }}
-        />
+        {this.renderChart(this.props.newsDetailsData)}
       </div>
     );
   }
+
 }
 export default TimelineChart;
-
-// Dummy static data (will be removed later) //
-const data = [
-  ['x', 'upvotes'],
-  ['3022', 4],
-  ['1', 10],
-  ['2', 23],
-  ['231', 17],
-  ['4', 18],
-  ['5', 9],
-  ['6', 11],
-  ['7', 27],
-  ['2321', 33],
-  ['9', 40],
-  ['10', 32],
-  ['144', 35],
-  ['12', 10],
-  ['13', 12],
-  ['14', 23],
-  ['159', 20],
-  ['16', 18],
-  ['17', 15],
-  ['18', 9],
-  ['19', 12],
-  ['256', 17],
-]

@@ -70,7 +70,7 @@ class App extends React.Component<AppProps, AppState> {
         <Column name="title" displayName="News Details" width={70} customRenderer={this.renderNewDetails}></Column>
       </NewsDetails>
       <Pagination {...this.props}></Pagination>
-      <TimelineChart></TimelineChart>
+      <TimelineChart {...this.props}></TimelineChart>
     </section>);
   }
 
