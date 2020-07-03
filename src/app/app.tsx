@@ -57,7 +57,7 @@ class App extends React.Component<AppProps, AppState> {
   renderHeader() {
     return (<header className="app-header">
       <div className="app-header-image"><img src="../images/y18.gif" alt="Hacker News" width="20px" height="20px" /></div>
-      <div className="app-header-text">Hacker News</div>
+      <div className="app-header-text"><h1>Hacker News</h1></div>
     </header>);
   }
 

@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import cors from 'cors';
 import {json,urlencoded} from 'body-parser';
+import compression from 'compression';
 import  * as config from './config/config';
 import {apiRouter} from './api/api-routes';
 
@@ -12,9 +13,11 @@ class App {
     constructor(clientApiBasehref:string){
         this.clientApiBasehref = clientApiBasehref;
         this.express = express();
+        this.express.use(cors());
         this.express.use(json());
         this.express.use(urlencoded({extended:true}));
-        this.express.use(cors());
+        this.express.use(compression())
+        
         
         this.express.use(express.static(path.join(__dirname, "../")));
         this.express.get("/", (req, res) => {

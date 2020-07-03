@@ -72,6 +72,7 @@ th {
     font-size:$size-sm;
 }
 .story-hide-option {
+    cursor: pointer;
     color: $story-info;
     font-weight: $weight-bd;
     font-size:$size-xs;
@@ -80,6 +81,7 @@ th {
     width: 0; 
     height: 0; 
     margin: 0 auto;
+    cursor: pointer;
     border-left: $size-3xs solid transparent;
     border-right: $size-3xs solid transparent;
     border-bottom: $size-3xs solid $story-vote;
