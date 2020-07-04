@@ -16,10 +16,10 @@
     "typescript": "^3.7.4"
   },
   "scripts": {
-    "install-client":"npm run install",
+    "install-client":"npm install",
     "start-client": "react-scripts start",
     "build-client": "workbox generateSW && react-scripts build",
-    "install":"npm run install && cd host && npm run install",
+    "install":"npm run install-client && cd host && npm run install",
     "build":"npm run build-client && cd host && npm run build",
     "start":"cd host && npm run start",
     "test": "react-scripts test",
