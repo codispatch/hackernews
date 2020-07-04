@@ -19,7 +19,10 @@
     "start": "react-scripts start",
     "build": "workbox generateSW && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "install-all":"npm run install && cd host && npm run install",
+    "build-all":"npm run build && cd host && npm run build",
+    "start-all":"cd host && npm run start"
   },
   "eslintConfig": {
     "extends": "react-app"
