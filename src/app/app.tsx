@@ -15,13 +15,15 @@ export interface AppProps {
   currentPageNumber?: number,
   setCurrentPageNumber?: any,
   getNewsDetailsData?: any,
-  newsDetailsData?: any
+  newsDetailsData?: any,
+  setUpVoteCount?:any,
+  hideStoryItem?:any
 }
 export interface AppState { }
 
 class App extends React.Component<AppProps, AppState> {
 
-  renderNewDetails(rowData: any) {
+  renderNewDetails(rowData: any,currentPageNumber:number,setUpVoteCount:any,hideStoryItem:any) {
 
     const timeAgoText = (dateTime: any) => {
 
@@ -45,13 +47,13 @@ class App extends React.Component<AppProps, AppState> {
       return Math.floor(seconds) + " seconds";
     }
 
-    return (<div><span className="story-title"><a href={rowData["url"]} >{rowData["title"]}</a></span> <span className="story-link">({rowData["url"] ? rowData["url"].split("/")[2].replace("www.", "") : ""})</span> by <span className="story-author">{rowData["author"]}</span> <span className="story-time-ago">({timeAgoText(rowData["created_at"]) + " ago"})</span> [<span className="story-hide-option">hide</span>]</div>);
+    return (<div><span className="story-title"><a href={rowData["url"]} >{rowData["title"]}</a></span> <span className="story-link">({rowData["url"] ? rowData["url"].split("/")[2].replace("www.", "") : ""})</span> by <span className="story-author">{rowData["author"]}</span> <span className="story-time-ago">({timeAgoText(rowData["created_at"]) + " ago"})</span> [<span className="story-hide-option" onClick={()=>{hideStoryItem(Number(currentPageNumber),rowData["objectID"],true)}}>hide</span>]</div>);
   }
   renderVoteCount(rowData: any) {
-    return (<div>{rowData["points"]}</div>);
+    return (<div >{rowData["points"]}</div>);
   }
-  renderUpVote(rowData: any) {
-    return (<div className="story-up-vote"></div>);
+  renderUpVote(rowData: any,currentPageNumber:number,setUpVoteCount:any,hideStoryItem:any) {
+    return (<div className="story-up-vote" onClick={()=>{setUpVoteCount(Number(currentPageNumber),rowData["objectID"],Number(rowData["points"]+1))}}></div>);
   }
 
   renderHeader() {
@@ -65,9 +67,9 @@ class App extends React.Component<AppProps, AppState> {
     return (<section className="app-section">
       <NewsDetails data={this.props.newsDetailsData}  showColumnHeader={true} {...this.props}>
         <Column name="num_comments" align="center" width={10} displayName="Comments" ></Column>
-        <Column name="age" align="center" displayName="VoteCount" width={10} customRenderer={this.renderVoteCount}></Column>
-        <Column name="company" align="center" displayName="UpVote" width={10} customRenderer={this.renderUpVote}></Column>
-        <Column name="title" displayName="News Details" width={70} customRenderer={this.renderNewDetails}></Column>
+        <Column name="age" align="center" displayName="VoteCount" width={10} customRenderer={this.renderVoteCount} setUpVoteCount={this.props.setUpVoteCount} hideStoryItem={this.props.hideStoryItem} currentPageNumber={this.props.currentPageNumber}></Column>
+        <Column name="company" align="center" displayName="UpVote" width={10} customRenderer={this.renderUpVote} setUpVoteCount={this.props.setUpVoteCount} hideStoryItem={this.props.hideStoryItem} currentPageNumber={this.props.currentPageNumber}></Column>
+        <Column name="title" displayName="News Details" width={70} customRenderer={this.renderNewDetails} setUpVoteCount={this.props.setUpVoteCount} hideStoryItem={this.props.hideStoryItem} currentPageNumber={this.props.currentPageNumber}></Column>
       </NewsDetails>
       <Pagination {...this.props}></Pagination>
       <TimelineChart {...this.props}></TimelineChart>

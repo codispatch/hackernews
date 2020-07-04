@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import App from "./app";
-import {setCurrentAppStatus,setCurrentPageNumber,getNewsDetailsData} from "./_duck/actions";
+import {setCurrentAppStatus,setCurrentPageNumber,getNewsDetailsData, setUpVoteCount, hideStoryItem,} from "./_duck/actions";
 
 export interface AppContainerProps { }
 export interface AppContainerState { }
@@ -24,6 +24,8 @@ const mapStateToProps = (state:any,ownProps:any) =>{
 export default connect(
     mapStateToProps,
     {
+        setUpVoteCount,
+        hideStoryItem,
         setCurrentAppStatus,
         setCurrentPageNumber,
         getNewsDetailsData

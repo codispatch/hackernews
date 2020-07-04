@@ -2,26 +2,45 @@ import getActionTypes from "./action-types";
 import {ThunkDispatch} from "redux-thunk";
 import { AnyAction } from "redux";
 import AppAPI from "../../api/app-api";
+import { INC_VOTE, HIDE_STORY } from "../../utility/helper";
 
 const tempActionTypes = getActionTypes();
 
 const getNewsDetailsData = (pageNumber:number) => async (dispatch:ThunkDispatch<{},{},AnyAction>,getState:any) => {
     return AppAPI.getNewsDetailsData(pageNumber).then(response =>{
-        if(response && response.data){
+        if(response){
             dispatch({
                 type:tempActionTypes.GET_NEWS_DETAILS,
-                payload:response.data.data.hits
+                payload:response
             }) 
         }      
     }).catch((err:any)=>{
-        
+        console.log(err);
     })
 }
-const setUpVoteCount = (data:any) =>{
-    return {
-        type:tempActionTypes.GET_NEWS_DETAILS,
-        payload:data
-    }
+const setUpVoteCount = (pageNumber:number,storyId:number,newData:any) => async (dispatch:ThunkDispatch<{},{},AnyAction>,getState:any) => {
+    return AppAPI.updateNewsDetailsData(pageNumber,storyId,INC_VOTE,newData).then(response =>{
+        if(response){
+            dispatch({
+                type:tempActionTypes.GET_NEWS_DETAILS,
+                payload:response
+            }) 
+        }      
+    }).catch((err:any)=>{
+        console.log(err);
+    })
+}
+const hideStoryItem = (pageNumber:number,storyId:number,newData:any) => async (dispatch:ThunkDispatch<{},{},AnyAction>,getState:any) => {
+    return AppAPI.updateNewsDetailsData(pageNumber,storyId,HIDE_STORY,newData).then(response =>{
+        if(response){
+            dispatch({
+                type:tempActionTypes.GET_NEWS_DETAILS,
+                payload:response
+            }) 
+        }      
+    }).catch((err:any)=>{
+        console.log(err);
+    })
 }
 const setCurrentAppStatus = (data:string) =>{
     return {
@@ -35,4 +54,5 @@ const setCurrentPageNumber = (pageNumber:number) =>{
         payload:pageNumber
     }
 }
-export { getNewsDetailsData,setUpVoteCount,setCurrentAppStatus,setCurrentPageNumber};
+
+export { getNewsDetailsData,setUpVoteCount,setCurrentAppStatus,setCurrentPageNumber,hideStoryItem};

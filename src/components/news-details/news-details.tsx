@@ -7,7 +7,9 @@ export interface NewsDetailsProps {
   children: any,
   getNewsDetailsData?:any,
   newsDetailsData?:any,
-  currentPageNumber?:number
+  currentPageNumber?:number,
+  setUpVoteCount?:any,
+  hideStoryItem?:any
 }
 export interface NewsDetailsState { }
 
@@ -46,7 +48,7 @@ class NewsDetails extends React.Component<NewsDetailsProps, NewsDetailsState> {
           if (row) {
             return (<tr key={i}>
               {this.props.children.map((col: any, j: number) => {
-                return (<td key={j} className={"td "+this.getTextAlignment(col.props.align)} >{col.props.customRenderer?col.props.customRenderer(row):row[col.props.name]}</td>)
+                return (<td key={j} className={"td "+this.getTextAlignment(col.props.align)} >{col.props.customRenderer?col.props.customRenderer(row,col.props.currentPageNumber,col.props.setUpVoteCount,col.props.hideStoryItem):row[col.props.name]}</td>)
               })}
             </tr>);
           } else {
@@ -80,7 +82,10 @@ export interface ColumnProps {
   displayName?: string,
   align?:string,
   width?:number,
-  customRenderer?:(rowData:any)=>JSX.Element
+  setUpVoteCount?:any,
+  hideStoryItem?:any,
+  currentPageNumber?:any,
+  customRenderer?:(rowData:any,currentPageNumber:number,setUpVoteCount:any,hideStoryItem:any)=>JSX.Element
 }
 export interface ColumnState {
 
