@@ -82,6 +82,7 @@ $warn-text: #f5a630;
 html,body {
   width: $size-fw;
   height: $size-fh;
+  min-width: 4 * $size-5xl;
   font-size: $size-md;
   font-weight: $weight-nm;
   letter-spacing: $size-5xs/4;
