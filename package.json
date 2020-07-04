@@ -18,7 +18,7 @@
   "scripts": {
     "start-client": "react-scripts start",
     "build-client": "workbox generateSW && react-scripts build",
-    "build":"npm run build-client && cd host && npm run install && npm run build",
+    "build":"npm run build-client && cd host && npm install && npm run build",
     "start":"cd host && npm run start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
